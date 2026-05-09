@@ -1,0 +1,45 @@
+.bg
+{
+    width: 60px;
+    height:60px;
+    position:absolute;
+    top: 30%;
+    left:40%
+}
+
+.container{
+  margin-top:50%
+}
+.form-container
+{
+    border-radius: 10px;
+    padding:30px;
+    box-shadow:0px 0px 10px 0px;
+    margin-top:40%;
+}
+
+form-group
+{
+  padding:30px;
+}
+.message
+{
+  text-align:center;
+}
+
+div .title
+{
+  text-align:center;
+  
+}
+
+.icon
+{
+  width: 16px;
+    height:16px;
+  
+}
+
+
+
+

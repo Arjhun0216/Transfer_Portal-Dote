@@ -1,0 +1,55 @@
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+.pdf
+
+# SQL dump files
+*.sql
+
+# CSV files
+*.csv
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Build folders
+dist/
+build/
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# PHP vendor folder
+vendor/
+
+# Temporary files
+tmp/
+temp/
+
+# IDE files
+.idea/
+
+# Coverage reports
+coverage/
+
+# Package locks (optional)
+package-lock.json
+yarn.lock

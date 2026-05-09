@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <title>Admin Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="loader.css" />
+  <link rel="stylesheet" href="../styles/modal.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#loader").hide();
+      $("#notes").hide();
+      $("#save").click(function() {
+        $.post(
+          "save_letter.php",
+          {
+            letter_no: $("#letter_no").val(),
+            dated: $("#dated").val()
+          },
+          function(data, status) {
+            if (data == "success") {
+              $("#myModal").css("display", "block");
+              $(".modal-content").css("background-color", "green");
+              $("#message").text("Success");
+            } else {
+              $("#myModal").css("display", "block");
+              $(".modal-content").css("background-color", "#ff6666");
+              $("#message").text(data);
+            }
+          }
+        );
+      });
+      $("#show").click(function() {
+        $.post(
+          "fetch_letter.php",
+          {
+            c_code: $("#c_code").val()
+          },
+          function(data, status) {
+            //alert(data);
+            if (data == "no_records") {
+              $("#notes").show();
+              $("#myModal").css("display", "block");
+              $(".modal-content").css("background-color", "#ff6666");
+              $("#message").text("Not a valid Councelling Code");
+            } else {
+              var result = $.parseJSON(data);
+              $.each(result, function(key, value) {
+                $("#letter_no").val(value["letter_no"]),
+                  $("#dated").val(value["dated"]);
+                $("#notes").show();
+              });
+            }
+          }
+        );
+      });
+      var modal = document.getElementById("myModal");
+      var span = document.getElementsByClassName("close")[0];
+      span.onclick = function() {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    });
+  </script>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content" style="width:50%;background-color: #f08585;">
+        <span class="close" style="margin-left:80%;">&times;</span>
+        <h5 id="message" style="color:white;"></h5>
+      </div>
+    </div>
+    <div id="loader"></div>
+
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+      <h3 class="w3-bar-item">Menu</h3>
+      <a href="approval/approve_students.php" class="w3-bar-item w3-button"
+        >Approval Process</a
+      >
+      <a
+        href="student_details/student_details.php"
+        class="w3-bar-item w3-button"
+        >Add/Edit Details</a
+      >
+      <a href="../report_generation/form_clg.php" class="w3-bar-item w3-button"
+        >College Details PDF</a
+      >
+    </div>
+
+    <!-- Page Content -->
+    <div style="margin-left:15%">
+      <div class="w3-container w3-teal" style="text-align: center;">
+        <h1>DIRECTORATE OF TECHNICAL EDUCATION</h1>
+      </div>
+    </div>
+  </body>
+</html>
